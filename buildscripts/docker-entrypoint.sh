@@ -41,7 +41,7 @@ docker_wait_hosts() {
                 # Extract the domain.
                 host=$(echo $host | sed -e 's/^http[s]\?:\/\/\([^\/]\+\).*/\1/')
                 echo -n .
-                val=$(ping -c 1 $host 2>/dev/null)
+                val=$(getent hosts $host 2>/dev/null)
                 if [ $? != 0 ]; then
                     echo "Failed to lookup $host"
                     continue
